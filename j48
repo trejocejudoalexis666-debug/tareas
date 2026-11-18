@@ -1,0 +1,96 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class j46_ControlContador {
+
+    // Variable de estado
+    private static int contador = 0;
+
+    public static void main(String[] args) {
+
+        // Crear la ventana principal
+        JFrame ventana = new JFrame("j46_ControlContador - Contador Interactivo");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(500, 200);
+        ventana.setLayout(new FlowLayout());
+        ventana.setLocationRelativeTo(null);
+
+        // Crear componentes
+        JButton btnSumar = new JButton("+1");
+        JButton btnRestar = new JButton("-1");
+        JButton btnSumar2 = new JButton("+2");
+        JButton btnRestar2 = new JButton("-2");
+        JButton btnSumar10 = new JButton("+10");
+        JButton btnRestar10 = new JButton("-10");
+
+        JLabel etiquetaValor = new JLabel("Valor actual: 0");
+
+        // Evento para sumar 1
+        btnSumar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contador++;
+                etiquetaValor.setText("Valor actual: " + contador);
+            }
+        });
+
+        // Evento para restar 1
+        btnRestar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contador--;
+                etiquetaValor.setText("Valor actual: " + contador);
+            }
+        });
+
+        // Evento para sumar 2
+        btnSumar2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contador += 2;
+                etiquetaValor.setText("Valor actual: " + contador);
+            }
+        });
+
+        // Evento para restar 2
+        btnRestar2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contador -= 2;
+                etiquetaValor.setText("Valor actual: " + contador);
+            }
+        });
+
+        // Evento para sumar 10
+        btnSumar10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contador += 10;
+                etiquetaValor.setText("Valor actual: " + contador);
+            }
+        });
+
+        // Evento para restar 10
+        btnRestar10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                contador -= 10;
+                etiquetaValor.setText("Valor actual: " + contador);
+            }
+        });
+
+        // Agregar componentes a la ventana
+        ventana.add(btnSumar);
+        ventana.add(btnRestar);
+        ventana.add(btnSumar2);
+        ventana.add(btnRestar2);
+        ventana.add(btnSumar10);
+        ventana.add(btnRestar10);
+        ventana.add(etiquetaValor);
+
+        // Mostrar la ventana
+        ventana.setVisible(true);
+    }
+}

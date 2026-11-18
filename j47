@@ -1,0 +1,70 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class j47_SelectorColor {
+    public static void main(String[] args) {
+
+        JFrame ventana = new JFrame("j47_SelectorColor - Selector de Colores");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(500, 500);
+        ventana.setLayout(new BorderLayout());
+        ventana.setLocationRelativeTo(null);
+
+        JPanel panelColor = new JPanel();
+        panelColor.setBackground(Color.WHITE);
+
+        JPanel panelControles = new JPanel();
+        panelControles.setLayout(new FlowLayout());
+
+        JRadioButton rbRojo = new JRadioButton("Rojo");
+        JRadioButton rbVerde = new JRadioButton("Verde");
+        JRadioButton rbAzul = new JRadioButton("Azul");
+        JRadioButton rbAmarillo = new JRadioButton("Amarillo"); // Nuevo color
+
+        ButtonGroup grupoBotones = new ButtonGroup();
+        grupoBotones.add(rbRojo);
+        grupoBotones.add(rbVerde);
+        grupoBotones.add(rbAzul);
+        grupoBotones.add(rbAmarillo);
+
+        rbRojo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelColor.setBackground(Color.RED);
+            }
+        });
+
+        rbVerde.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelColor.setBackground(Color.GREEN);
+            }
+        });
+
+        rbAzul.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelColor.setBackground(Color.BLUE);
+            }
+        });
+
+        rbAmarillo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelColor.setBackground(Color.YELLOW);
+            }
+        });
+
+        panelControles.add(rbRojo);
+        panelControles.add(rbVerde);
+        panelControles.add(rbAzul);
+        panelControles.add(rbAmarillo);
+
+        ventana.add(panelColor, BorderLayout.CENTER);
+        ventana.add(panelControles, BorderLayout.SOUTH);
+
+        ventana.setVisible(true);
+    }
+}

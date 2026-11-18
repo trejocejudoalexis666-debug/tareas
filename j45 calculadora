@@ -1,0 +1,107 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionListener;
+
+public class j45_CalculadoraSimple {
+
+    public static void main(String[] args) {
+
+        JFrame ventana = new JFrame("Calculadora Simple");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(500, 300);
+        ventana.setLocationRelativeTo(null);
+        ventana.setLayout(new BorderLayout());
+
+        // Panel de datos
+        JPanel panelDatos = new JPanel(new GridLayout(2, 2, 10, 10));
+
+        JTextField campo1 = new JTextField(15);
+        JTextField campo2 = new JTextField(15);
+
+        campo1.setFont(new Font("Arial", Font.PLAIN, 18));
+        campo2.setFont(new Font("Arial", Font.PLAIN, 18));
+
+        panelDatos.add(new JLabel("Número 1:"));
+        panelDatos.add(campo1);
+
+        panelDatos.add(new JLabel("Número 2:"));
+        panelDatos.add(campo2);
+
+        // Panel de botones
+        JPanel panelBotones = new JPanel(new FlowLayout());
+
+        JButton btnSumar = new JButton("+");
+        JButton btnRestar = new JButton("-");
+        JButton btnMultiplicar = new JButton("*");
+        JButton btnDividir = new JButton("/");
+        JButton btnBorrar = new JButton("Borrar");
+
+        Dimension tamBoton = new Dimension(80, 35);
+
+        btnSumar.setPreferredSize(tamBoton);
+        btnRestar.setPreferredSize(tamBoton);
+        btnMultiplicar.setPreferredSize(tamBoton);
+        btnDividir.setPreferredSize(tamBoton);
+        btnBorrar.setPreferredSize(new Dimension(90, 35));
+
+        panelBotones.add(btnSumar);
+        panelBotones.add(btnRestar);
+        panelBotones.add(btnMultiplicar);
+        panelBotones.add(btnDividir);
+        panelBotones.add(btnBorrar);
+
+        // Resultado
+        JLabel resultado = new JLabel("Resultado: ", SwingConstants.CENTER);
+        resultado.setFont(new Font("Arial", Font.BOLD, 20));
+
+        // Evento para operaciones
+        ActionListener calcular = e -> {
+            try {
+
+                double num1 = Double.parseDouble(campo1.getText());
+                double num2 = Double.parseDouble(campo2.getText());
+
+                double res = 0;
+
+                if (e.getSource() == btnSumar) {
+                    res = num1 + num2;
+                } else if (e.getSource() == btnRestar) {
+                    res = num1 - num2;
+                } else if (e.getSource() == btnMultiplicar) {
+                    res = num1 * num2;
+                } else if (e.getSource() == btnDividir) {
+
+                    if (num2 == 0) {
+                        resultado.setText("Error: No se puede dividir entre 0");
+                        return;
+                    }
+
+                    res = num1 / num2;
+                }
+
+                resultado.setText("Resultado: " + res);
+
+            } catch (NumberFormatException ex) {
+                resultado.setText("Error: Ingresa números válidos");
+            }
+        };
+
+        btnSumar.addActionListener(calcular);
+        btnRestar.addActionListener(calcular);
+        btnMultiplicar.addActionListener(calcular);
+        btnDividir.addActionListener(calcular);
+
+        // Botón borrar
+        btnBorrar.addActionListener(e -> {
+            campo1.setText("");
+            campo2.setText("");
+            resultado.setText("Resultado: ");
+        });
+
+        ventana.add(panelDatos, BorderLayout.NORTH);
+        ventana.add(panelBotones, BorderLayout.CENTER);
+        ventana.add(resultado, BorderLayout.SOUTH);
+
+        ventana.setVisible(true);
+    }
+}

@@ -1,0 +1,52 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class j49_SelectorOpciones {
+
+    public static void main(String[] args) {
+
+        // 1. Creamos la ventana principal
+        JFrame ventana = new JFrame("j49_SelectorOpciones - Menú Desplegable");
+        ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ventana.setSize(400, 200);
+        ventana.setLayout(new FlowLayout());
+        ventana.setLocationRelativeTo(null);
+
+        // 2. Lista de lenguajes
+        String[] lenguajes = {
+                "Alex",
+                "Mateo",
+                "Axel",
+                "Dante",
+                "Carlos",
+                "Chino"
+        };
+
+        // Creamos el JComboBox
+        JComboBox<String> comboLenguajes = new JComboBox<>(lenguajes);
+
+        JLabel etiqueta = new JLabel("Selecciona un nombre de bros de la lista.");
+
+        // 3. Evento del JComboBox
+        comboLenguajes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String seleccionado =
+                        (String) comboLenguajes.getSelectedItem();
+
+                etiqueta.setText("Has elegido: " + seleccionado);
+            }
+        });
+
+        // 4. Añadimos los componentes
+        ventana.add(new JLabel("Nombres de bros:"));
+        ventana.add(comboLenguajes);
+        ventana.add(etiqueta);
+
+        // 5. Mostramos la ventana
+        ventana.setVisible(true);
+    }
+}
